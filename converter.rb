@@ -50,11 +50,36 @@ class Converter
 		# Take all possible combinations of the words on the keys. 
 		# Product of each key's characters with all other key's characters
 		key_words = key_characters.shift.product(*key_characters).map(&:join)
+
 		search_word_combinations(key_words)
   end
 
+  # Method to search all possible combinations against dictionary.
   def search_word_combinations(key_words)
-  	final_words = @dictionary_words & key_words
+  	# Starting point for array as minimum word length is 3 characters
+  	i = 2
+  	# Create a blank array to store final output.
+  	final_words = []
+
+  	# Loop to get all combinations of words (Minimum word length 3)
+  	# Lookup those combinations against dictionary & find all matching words.
+  	while i < 7 do
+  		# First array of starting letters
+  		a = key_words.map{|x| x[0..i]}.uniq
+  		# Second array of ending letters
+  		b = key_words.map{|y| y[i..9]}.uniq
+  		# Increment the loop counter
+  		i += 1
+  		p a
+  		p b
+  		p a.product(b)
+  	end
+
+  	# Get exact match
+  	exact_matches = @dictionary_words & key_words
+  	final_words << exact_matches
+
+  	# Flatten the final array by one level.
 		p final_words.flatten(1)
 	end
 
