@@ -4,8 +4,8 @@ class Converter
 	def initialize
 		get_input
 		get_dictionary
-		p get_keypad
-		p @number
+		get_keypad
+		get_key_combinations(@number)
 	end
 
 	# Method to read the dictionary file and store it in a global array
@@ -37,6 +37,20 @@ class Converter
       "8" => ['t','u','v'],
       "9" => ['w','x','y','z']
     }
+  end
+
+  # Method to create all possible word combinations using the keypad letters.
+  def get_key_combinations(number)
+  	# Convert the number into an array
+  	number_array = number.split("")
+
+  	# Convert that array of numbers into a array of characters maching each of the number from keypad list.
+		key_characters = number_array.map{|n| @keypad[n]}
+
+		# Take all possible combinations of the words on the keys. 
+		# Product of each key's characters with all other key's characters
+		key_words = key_characters.shift.product(*key_characters)
+		p key_words
   end
 
 end
