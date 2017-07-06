@@ -26,3 +26,5 @@ class Converter
 	end
 
 end
+
+Converter.new
