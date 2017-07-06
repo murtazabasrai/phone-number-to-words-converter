@@ -4,6 +4,8 @@ class Converter
 	def initialize
 		get_input
 		get_dictionary
+		p get_keypad
+		p @number
 	end
 
 	# Method to read the dictionary file and store it in a global array
@@ -15,19 +17,17 @@ class Converter
 	# Validate the number entered by user.
 	def get_input
 		puts "Please enter a 10 digit number (It should not contain 0 or 1):"
-		number = gets.chomp
-		unless (number.length == 10 && number.match(/^[2-9]*$/))
+		@number = gets.chomp
+		unless (@number.length == 10 && @number.match(/^[2-9]*$/))
 			puts "The number which you entered is invalid."
 			# Call the method again if the number is not valid.
 			get_input
-		else
-			p number
 		end
 	end
 
 	# Hash of numbers associated with alphabets as on a phone keypad.
-	def keypad
-    @letters = {
+	def get_keypad
+    @keypad = {
       "2" => ['a','b','c'],
       "3" => ['d','e','f'],
       "4" => ['g','h','i'],
