@@ -67,7 +67,7 @@ class Converter
       # First array of unique starting letters
       a = key_words.map{|x| x[0..i]}.uniq
       # Second array of unique ending letters
-      b = key_words.map{|y| y[i..9]}.uniq
+      b = key_words.map{|y| y[i+1..-1]}.uniq
 
       # Checking first array of word combinations with dictionary
       lookup_one = @dictionary_words & a
