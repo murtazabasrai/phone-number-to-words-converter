@@ -64,16 +64,20 @@ class Converter
   	# Loop to get all combinations of words (Minimum word length 3)
   	# Lookup those combinations against dictionary & find all matching words.
   	while i < 7 do
-  		# First array of starting letters
+  		# First array of unique starting letters
   		a = key_words.map{|x| x[0..i]}.uniq
-  		# Second array of ending letters
+  		# Second array of unique ending letters
   		b = key_words.map{|y| y[i..9]}.uniq
   		# Increment the loop counter
+      matches = a.product(b)
+      partial_words = @dictionary_words & matches
+      p matches 
+      p "-------------------------"
+      p partial_words
+
+      final_words << partial_words
   		i += 1
-  		p a
-  		p b
-  		p a.product(b)
-  	end
+    end
 
   	# Get exact match
   	exact_matches = @dictionary_words & key_words
