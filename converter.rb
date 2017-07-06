@@ -49,8 +49,9 @@ class Converter
 
 		# Take all possible combinations of the words on the keys. 
 		# Product of each key's characters with all other key's characters
-		key_words = key_characters.shift.product(*key_characters)
+		key_words = key_characters.shift.product(*key_characters).map(&:join)
 		p key_words
+		
   end
 
 end
