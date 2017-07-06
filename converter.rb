@@ -56,36 +56,24 @@ class Converter
 
   # Method to search all possible combinations against dictionary.
   def search_word_combinations(key_words)
-    # Starting point for array as minimum word length is 3 characters
-    i = 2
-    # Create a blank array to store final output.
     final_words = []
-
     # Loop to get all combinations of words (Minimum word length 3)
-    # Lookup those combinations against dictionary & find all matching words.
+    i = 2
     while i < 7 do
-      # First array of unique starting letters
       a = key_words.map{|x| x[0..i]}.uniq
-      # Second array of unique ending letters
       b = key_words.map{|y| y[i+1..-1]}.uniq
 
-      # Checking first array of word combinations with dictionary
+      # Find all matching words from dictionary
       lookup_one = @dictionary_words & a
-
-      # Checking second array of word combinations with dictionary 
       lookup_two = @dictionary_words & b
 
       # Combining the lookup result arrays
       merge_lookup = lookup_one.product(lookup_two)
-
-      # Inserting the combined array into the final result result array if combined array is not null
       final_words << merge_lookup unless merge_lookup.empty?
-
-      # Increment the loop counter
       i += 1
     end
 
-    # Get exact match
+    # Get exact matches
     exact_matches = @dictionary_words & key_words
     final_words << exact_matches
 
