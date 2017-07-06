@@ -50,9 +50,13 @@ class Converter
 		# Take all possible combinations of the words on the keys. 
 		# Product of each key's characters with all other key's characters
 		key_words = key_characters.shift.product(*key_characters).map(&:join)
-		p key_words
-		
+		search_word_combinations(key_words)
   end
+
+  def search_word_combinations(key_words)
+  	final_words = @dictionary_words & key_words
+		p final_words.flatten(1)
+	end
 
 end
 
