@@ -2,6 +2,12 @@ ENV["CONVERTER_ENV"] = "test"
 require "converter"
 
 describe Converter do
+  describe "Number to convert into words: 7463981023" do
+    it "Should fail as number has 0 and 1 digits" do
+      expect { Converter.new.get_key_combinations("7463981023") }.to raise_error("The given number is not valid. Please try again")
+    end
+  end
+
   describe "Number to convert into words: 6686787825" do
     it "Should search all key combinations against dictionary and get matching words. Min word length is 3" do
       expect(Converter.new.get_key_combinations("6686787825"))

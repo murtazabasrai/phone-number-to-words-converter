@@ -17,14 +17,8 @@ class Converter
   # Validate the number entered by user.
   def get_input
     puts "Please enter a 10 digit number (It should not contain 0 or 1):"
-    @number = gets.chomp
-    unless (@number.length == 10 && @number.match(/^[2-9]*$/))
-      puts "The number which you entered is invalid."
-      # Call the method again if the number is not valid.
-      get_input
-    else
-      get_key_combinations(@number)
-    end
+    number = gets.chomp
+    get_key_combinations(number)
   end
 
   # Hash of numbers associated with alphabets as on a phone keypad.
@@ -41,8 +35,17 @@ class Converter
     }
   end
 
+  # Method to check if the given number is valid or not
+  # It checks if the number is of 10 digits and does not contain 0 or 1.
+  def check_valid_number(number)
+    unless (number.length == 10 && number.match(/^[2-9]*$/))
+      raise "The given number is not valid. Please try again"
+    end
+  end
+
   # Method to create all possible word combinations using the keypad letters.
   def get_key_combinations(number)
+    check_valid_number(number)
     # Convert the number into an array
     number_array = number.split("")
 
@@ -51,7 +54,11 @@ class Converter
 
     # Take all possible combinations of the words on the keys. 
     # Product of each key's characters with all other key's characters
-    key_words = key_characters.shift.product(*key_characters).map(&:join)
+    begin
+      key_words = key_characters.shift.product(*key_characters).map(&:join)
+    rescue TypeError
+      return "The number you have entered is not a valid number. Please try again."
+    end
 
     search_word_combinations(key_words)
   end
