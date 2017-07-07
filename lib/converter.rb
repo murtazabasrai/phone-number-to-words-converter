@@ -83,4 +83,4 @@ class Converter
 
 end
 
-Converter.new
+Converter.new unless ENV["CONVERTER_ENV"] == "test"
