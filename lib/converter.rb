@@ -1,11 +1,11 @@
 class Converter
 
-  # Class initialize method
+  # Class custom initialize method
+  # Command: ruby Converter.new.start
   def initialize
-    get_input
     get_dictionary
     get_keypad
-    get_key_combinations(@number)
+    get_input unless ENV["CONVERTER_ENV"] == "test"
   end
 
   # Method to read the dictionary file and store it in a global array
@@ -22,6 +22,8 @@ class Converter
       puts "The number which you entered is invalid."
       # Call the method again if the number is not valid.
       get_input
+    else
+      get_key_combinations(@number)
     end
   end
 
@@ -83,4 +85,4 @@ class Converter
 
 end
 
-Converter.new unless ENV["CONVERTER_ENV"] == "test"
+Converter.new
