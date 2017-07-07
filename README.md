@@ -29,10 +29,11 @@ The project is a Ruby script which takes an input of a 10 digit phone number and
   - Run the tests: `rspec spec --format documentation`
 
 ## Output screen
-  - Program Output
+
+#### Program Output
 ![](output/program_output.png)
 
-  - Test Output
+#### Test Output
 ![](output/program_output.png)
 
 
