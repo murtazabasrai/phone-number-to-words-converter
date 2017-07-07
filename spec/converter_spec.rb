@@ -3,7 +3,7 @@ require "converter"
 
 describe Converter do
   describe "Number to convert into words: 7463981023" do
-    it "Should fail as number has 0 and 1 digits" do
+    it "Should raise an exception as number contains 0 and 1 digits" do
       expect { Converter.new.get_key_combinations("7463981023") }.to raise_error("The given number is not valid. Please try again")
     end
   end
