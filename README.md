@@ -34,6 +34,6 @@ The project is a Ruby script which takes an input of a 10 digit phone number and
 ![](output/program_output.png)
 
 #### Test Output
-![](output/program_output.png)
+![](output/test_output.png)
 
 
